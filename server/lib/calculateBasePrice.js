@@ -1,10 +1,14 @@
-export const calculateBasePrice = (
+const roundValue = (input) => {
+  return Number.parseFloat(input.toFixed(2));
+};
+
+export const calculateBasePrice = ({
   base,
   minStep,
   maxStep,
   threshold,
-  steps
-) => {
+  steps,
+}) => {
   let newBasePrice = base;
   const operator = Math.sign(steps);
   const repetitions = Math.abs(steps);
@@ -21,6 +25,7 @@ export const calculateBasePrice = (
         newBasePrice += minStep * operator;
       }
     }
+    newBasePrice = roundValue(newBasePrice);
   }
 
   return newBasePrice;

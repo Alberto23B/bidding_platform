@@ -7,8 +7,8 @@ const api = express.Router();
 api.use('/', checkBiddingInput);
 
 api.post('/', (req, res) => {
-  const { base, minStep, maxStep, threshold, steps } = req.body;
-  const result = calculateBasePrice(base, minStep, maxStep, threshold, steps);
+  const input = req.body;
+  const result = calculateBasePrice(input);
 
   if (result <= 0) {
     res.json({ result: 0, status: 200, details: "Base can't go below 0" });
