@@ -14,10 +14,10 @@ const url = 'http://localhost:5050';
 
 function App() {
   const [inputData, setInputData] = useState<InputData>({
-    base: 0,
-    minStep: 0,
-    maxStep: 0,
-    threshold: 0,
+    base: 5000,
+    minStep: 500,
+    maxStep: 1000,
+    threshold: 2000,
     steps: 0,
   });
   const [currentBid, setCurrentBid] = useState(0);
@@ -58,109 +58,124 @@ function App() {
       <h1>Bidding Platform</h1>
       <form onSubmit={handleSubmit} className='form'>
         <div className='field'>
+          <label htmlFor='input'>Base:</label>
+          <input
+            inputMode='numeric'
+            name='base'
+            value={inputData.base}
+            className='form-input'
+            onChange={(e) => handleChange(e)}
+            disabled={currentBid != 0}
+          />
+        </div>
+        <div className='field'>
           <label htmlFor='threshold'>Threshold:</label>
           <input
             inputMode='numeric'
             name='threshold'
             value={inputData.threshold}
+            className='form-input'
             onChange={(e) => handleChange(e)}
             disabled={currentBid != 0}
           />
         </div>
-        <div className='field'></div>
-        <label htmlFor='minStep'>MinStep:</label>
-        <input
-          inputMode='numeric'
-          name='minStep'
-          value={inputData.minStep}
-          onChange={(e) => handleChange(e)}
-          disabled={currentBid != 0}
-        />
+        <div className='field'>
+          <label htmlFor='minStep'>MinStep:</label>
+          <input
+            inputMode='numeric'
+            name='minStep'
+            value={inputData.minStep}
+            className='form-input'
+            onChange={(e) => handleChange(e)}
+            disabled={currentBid != 0}
+          />
+        </div>
         <div className='field'>
           <label htmlFor='minStep'>MaxStep:</label>
           <input
             inputMode='numeric'
             name='maxStep'
             value={inputData.maxStep}
-            onChange={(e) => handleChange(e)}
-            disabled={currentBid != 0}
-          />
-        </div>
-        <div className='field'>
-          <label htmlFor='input'>Enter the first bid:</label>
-          <input
-            inputMode='numeric'
-            name='base'
-            value={inputData.base}
+            className='form-input'
             onChange={(e) => handleChange(e)}
             disabled={currentBid != 0}
           />
         </div>
 
-        <div>
-          <label htmlFor='plusFive'>+5</label>
-          <input
-            name='step'
-            value={5}
-            id='plusFive'
-            type='radio'
-            onClick={() =>
-              setInputData((prev) => ({
-                ...prev,
-                steps: 5,
-              }))
-            }
-          />
-          <label htmlFor='plusOne'>+1</label>
-          <input
-            name='step'
-            value={1}
-            id='plusOne'
-            type='radio'
-            onClick={() =>
-              setInputData((prev) => ({
-                ...prev,
-                steps: 1,
-              }))
-            }
-          />
-          <label htmlFor='minusOne'>-1</label>
-          <input
-            name='step'
-            value={-1}
-            id='minusOne'
-            type='radio'
-            onClick={() =>
-              setInputData((prev) => ({
-                ...prev,
-                steps: -1,
-              }))
-            }
-          />
-          <label htmlFor='minusFive'>-5</label>
-          <input
-            name='step'
-            value={-5}
-            id='minusFive'
-            type='radio'
-            onClick={() =>
-              setInputData((prev) => ({
-                ...prev,
-                steps: -5,
-              }))
-            }
-          />
+        <div className='field'>
+          <div>
+            <label htmlFor='plusFive'>+5</label>
+            <input
+              name='step'
+              value={5}
+              id='plusFive'
+              type='radio'
+              onClick={() =>
+                setInputData((prev) => ({
+                  ...prev,
+                  steps: 5,
+                }))
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor='plusOne'>+1</label>
+            <input
+              name='step'
+              value={1}
+              id='plusOne'
+              type='radio'
+              onClick={() =>
+                setInputData((prev) => ({
+                  ...prev,
+                  steps: 1,
+                }))
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor='minusOne'>-1</label>
+            <input
+              name='step'
+              value={-1}
+              id='minusOne'
+              type='radio'
+              onClick={() =>
+                setInputData((prev) => ({
+                  ...prev,
+                  steps: -1,
+                }))
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor='minusFive'>-5</label>
+            <input
+              name='step'
+              value={-5}
+              id='minusFive'
+              type='radio'
+              onClick={() =>
+                setInputData((prev) => ({
+                  ...prev,
+                  steps: -5,
+                }))
+              }
+            />
+          </div>
         </div>
-        <div>
-          <button type='submit'>Place bid</button>
-          <button type='reset' onClick={handleReset}>
+        <div className='buttons-container'>
+          <button type='submit' className='button'>
+            Place bid
+          </button>
+          <button type='reset' className='button' onClick={handleReset}>
             Reset
           </button>
         </div>
       </form>
-      <div>
-        <h2>Current Bid:</h2>
-        <p>{currentBid}</p>
+      <div className='current-container'>
+        <h3>Current Bid:</h3>
+        <p className='current'>{currentBid} €</p>
       </div>
     </>
   );
