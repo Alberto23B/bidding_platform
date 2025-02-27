@@ -1,4 +1,4 @@
-const roundValue = (input) => {
+const roundValue = (input: number) => {
   return Number.parseFloat(input.toFixed(2));
 };
 
@@ -8,6 +8,12 @@ export const calculateBasePrice = ({
   maxStep,
   threshold,
   steps,
+}: {
+  base: number;
+  minStep: number;
+  maxStep: number;
+  threshold: number;
+  steps: number;
 }) => {
   let newBasePrice = base;
   const operator = Math.sign(steps);

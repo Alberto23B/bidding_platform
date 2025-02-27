@@ -1,5 +1,5 @@
 import express from 'express';
-import checkBiddingInput from '../middlewares/checkBiddingInput';
+import { checkBiddingInput } from '../middlewares/checkBiddingInput';
 import bidController from '../controllers/bidController';
 
 const api = express.Router();

@@ -1,11 +1,11 @@
-import express from 'express';
+import express, { Application } from 'express';
 import cors from 'cors';
 import api from './routes/api';
 import errorHandling from './middlewares/errorHandling';
 import notFound from './middlewares/notFound';
 
 const PORT = process.env.PORT || 5050;
-const app = express();
+const app: Application = express();
 
 app.use(cors());
 
