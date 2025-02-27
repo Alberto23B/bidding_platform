@@ -14,6 +14,10 @@ export const calculateBasePrice = ({
   const repetitions = Math.abs(steps);
 
   for (let i = 0; i < repetitions; i++) {
+    if (newBasePrice <= minStep || newBasePrice <= maxStep) {
+      return newBasePrice;
+    }
+
     if (newBasePrice < threshold) {
       newBasePrice += minStep * operator;
     } else if (newBasePrice > threshold) {
