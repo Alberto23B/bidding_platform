@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import api from './routes/api.js';
-import errorHandling from './middlewares/errorHandling.js';
-import notFound from './middlewares/notFound.js';
+import api from './routes/api';
+import errorHandling from './middlewares/errorHandling';
+import notFound from './middlewares/notFound';
 
 const PORT = process.env.PORT || 5050;
 const app = express();
