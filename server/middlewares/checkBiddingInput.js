@@ -1,7 +1,14 @@
 export default function checkBiddingInput(req, res, next) {
   const { base, minStep, maxStep, steps, threshold } = req.body || '';
 
-  if (!base || !minStep || !maxStep || !steps || !threshold) {
+  if (!checkBase(base)) {
+    return res.json({
+      status: 400,
+      message: 'Base has to be 0 or more',
+    });
+  }
+
+  if (!minStep || !maxStep || !steps || !threshold) {
     return res.json({
       status: 400,
       message: 'Please insert all requested fields',
@@ -17,3 +24,10 @@ export default function checkBiddingInput(req, res, next) {
     next();
   }
 }
+
+const checkBase = (base) => {
+  if (base < 0) {
+    return false;
+  }
+  return true;
+};
