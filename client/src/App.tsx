@@ -31,15 +31,6 @@ function App() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (inputData.base <= 0) {
-      alert('Please insert a value above 0');
-      return;
-    }
-    setCurrentBid(inputData.base);
-  };
-
   const handleReset = () => {
     setInputData({
       base: 0,
@@ -51,14 +42,15 @@ function App() {
     setCurrentBid(0);
   };
 
-  const handleBid = async (value: number) => {
-    setInputData((prev) => ({
-      ...prev,
-      steps: Number(value),
-    }));
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const response = await getBid(url, inputData);
 
-    console.log(response);
+    setInputData((prev) => ({
+      ...prev,
+      base: response.result,
+    }));
+    setCurrentBid(response.result);
   };
 
   return (
@@ -104,17 +96,66 @@ function App() {
             disabled={currentBid != 0}
           />
         </div>
+
         <div>
-          <button type='submit'>Set base</button>
+          <label htmlFor='plusFive'>+5</label>
+          <input
+            name='step'
+            value={5}
+            id='plusFive'
+            type='radio'
+            onClick={() =>
+              setInputData((prev) => ({
+                ...prev,
+                steps: 5,
+              }))
+            }
+          />
+          <label htmlFor='plusOne'>+1</label>
+          <input
+            name='step'
+            value={1}
+            id='plusOne'
+            type='radio'
+            onClick={() =>
+              setInputData((prev) => ({
+                ...prev,
+                steps: 1,
+              }))
+            }
+          />
+          <label htmlFor='minusOne'>-1</label>
+          <input
+            name='step'
+            value={-1}
+            id='minusOne'
+            type='radio'
+            onClick={() =>
+              setInputData((prev) => ({
+                ...prev,
+                steps: -1,
+              }))
+            }
+          />
+          <label htmlFor='minusFive'>-5</label>
+          <input
+            name='step'
+            value={-5}
+            id='minusFive'
+            type='radio'
+            onClick={() =>
+              setInputData((prev) => ({
+                ...prev,
+                steps: -5,
+              }))
+            }
+          />
+        </div>
+        <div>
+          <button type='submit'>Place bid</button>
           <button type='reset' onClick={handleReset}>
             Reset
           </button>
-        </div>
-        <div>
-          <button onClick={() => handleBid(5)}>+5</button>
-          <button onClick={() => handleBid(1)}>+1</button>
-          <button onClick={() => handleBid(-1)}>-1</button>
-          <button onClick={() => handleBid(-5)}>-5</button>
         </div>
       </form>
       <div>
