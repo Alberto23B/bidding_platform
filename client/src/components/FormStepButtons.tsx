@@ -1,6 +1,6 @@
 import { InputData } from '../types/types';
 
-export default function FormRadioInputs({
+export default function FormStepButtons({
   setInputData,
 }: {
   setInputData: (update: (prev: InputData) => InputData) => void;
@@ -57,14 +57,16 @@ export default function FormRadioInputs({
       {inputs.map((field, i) => {
         return (
           <div key={i}>
-            <label htmlFor={field.htmlFor}>{field.label}</label>
-            <input
+            <button
+              className='button'
+              type='submit'
               value={field.value}
               name='step'
               id={field.id}
-              type='radio'
               onClick={field.onClick}
-            />
+            >
+              {field.label}
+            </button>
           </div>
         );
       })}

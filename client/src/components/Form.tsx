@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import getBid from '../lib/getBid';
 import { InputData } from '../types/types';
-import FormRadioInputs from './FormRadioInputs';
-import FormButtons from './FormButtons';
+import FormStepButtons from './FormStepButtons';
+import FormButtons from './ResetButton';
 import FormInputs from './FormInputs';
 import checkForZero from '../lib/checkForZero';
 
@@ -55,8 +55,11 @@ export default function Form({
   };
 
   const handleReset = () => {
-    setInputData(initialInputState);
     setCurrentBid(0);
+  };
+
+  const handleClear = () => {
+    setInputData(initialInputState);
   };
 
   return (
@@ -66,8 +69,8 @@ export default function Form({
         inputData={inputData}
         currentBid={currentBid}
       />
-      <FormRadioInputs setInputData={setInputData} />
-      <FormButtons handleReset={handleReset} />
+      <FormStepButtons setInputData={setInputData} />
+      <FormButtons handleReset={handleReset} handleClear={handleClear} />
     </form>
   );
 }

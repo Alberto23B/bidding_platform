@@ -42,6 +42,7 @@ export default function FormInputs({
             <input
               type='number'
               step={0.1}
+              id={field.name}
               name={field.name}
               value={field.value}
               className='form-input'
