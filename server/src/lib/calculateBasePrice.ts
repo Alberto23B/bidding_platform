@@ -24,17 +24,18 @@ export const calculateBasePrice = ({
       return { base: newBasePrice, limitReached: true };
     }
 
-    if (newBasePrice < threshold) {
-      newBasePrice += minStep * operator;
-    } else if (newBasePrice > threshold) {
-      newBasePrice += maxStep * operator;
+    let stepValue;
+
+    if (newBasePrice < threshold && operator > 0) {
+      stepValue = minStep;
+    } else if (newBasePrice > threshold && operator < 0) {
+      stepValue = minStep;
     } else {
-      if (operator === 1) {
-        newBasePrice += maxStep * operator;
-      } else {
-        newBasePrice += minStep * operator;
-      }
+      stepValue = maxStep;
     }
+
+    newBasePrice += stepValue * operator;
+
     newBasePrice = roundValue(newBasePrice);
   }
 
