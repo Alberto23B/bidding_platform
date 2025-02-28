@@ -18,6 +18,7 @@ Questo progetto implementa un sistema di bidding che tiene in considerazione un 
 - **Separazione del codice** per contesto e funzionalità.
 - **Utilizzo di nomi significativi** per le variabili.
 - **Uso di funzioni helper** per semplificare il codice.
+- **Testing con Postman** per verificare il funzionamento del server.
 
 ### Validazione
 
