@@ -42,21 +42,18 @@ Questo progetto implementa un sistema di bidding che tiene in considerazione un 
    cd <project-folder>
    ```
 
-2. Installa le dipendenze:
+
+2. Avvia il backend:
 
    ```sh
+   cd serer
    npm install
-   ```
-
-3. Avvia il backend:
-
-   ```sh
-   cd backend
    npm run dev
    ```
 
-4. Avvia il frontend:
+3. Avvia il frontend:
    ```sh
-   cd frontend
+   cd client
+   npm install
    npm run dev
    ```
