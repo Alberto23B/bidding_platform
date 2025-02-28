@@ -4,12 +4,13 @@ import { InputData } from '../types/types';
 import FormRadioInputs from './FormRadioInputs';
 import FormButtons from './FormButtons';
 import FormInputs from './FormInputs';
+import checkForZero from '../lib/checkForZero';
 
 const initialInputState = {
-  base: 5000,
-  minStep: 500,
-  maxStep: 1000,
-  threshold: 2000,
+  base: 0,
+  minStep: 0,
+  maxStep: 0,
+  threshold: 0,
   steps: 0,
 };
 
@@ -35,6 +36,11 @@ export default function Form({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!checkForZero(inputData)) {
+      alert('Base, MinStep and MaxStep must be more than 0');
+      return;
+    }
 
     const response =
       currentBid === 0
