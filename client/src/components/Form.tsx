@@ -41,6 +41,10 @@ export default function Form({
         ? await getBid(url, inputData)
         : await getBid(url, { ...inputData, base: currentBid });
 
+    if (response.limitReached) {
+      alert("Limit reached: base can't be 0 or below");
+    }
+
     setCurrentBid(response.result);
   };
 

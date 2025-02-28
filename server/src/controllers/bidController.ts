@@ -7,5 +7,19 @@ export default function bidController(
   next: NextFunction
 ) {
   const result = calculateBasePrice(req.body);
-  res.json({ result: result, status: 200, details: 'Success' });
+  if (result.limitReached) {
+    res.json({
+      result: result.base,
+      status: 200,
+      details: 'Success',
+      limitReached: true,
+    });
+  } else {
+    res.json({
+      result: result.base,
+      status: 200,
+      details: 'Success',
+      limitReached: false,
+    });
+  }
 }

@@ -21,7 +21,7 @@ export const calculateBasePrice = ({
 
   for (let i = 0; i < repetitions; i++) {
     if (newBasePrice <= minStep && newBasePrice <= maxStep && operator === -1) {
-      return newBasePrice;
+      return { base: newBasePrice, limitReached: true };
     }
 
     if (newBasePrice < threshold) {
@@ -38,5 +38,5 @@ export const calculateBasePrice = ({
     newBasePrice = roundValue(newBasePrice);
   }
 
-  return newBasePrice;
+  return { base: newBasePrice, limitReached: false };
 };

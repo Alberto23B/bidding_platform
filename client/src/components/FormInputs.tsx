@@ -17,6 +17,7 @@ export default function FormInputs({
         <label htmlFor='input'>Base:</label>
         <input
           type='number'
+          step={0.1}
           name='base'
           value={inputData.base}
           className='form-input'
@@ -28,6 +29,7 @@ export default function FormInputs({
         <label htmlFor='threshold'>Threshold:</label>
         <input
           type='number'
+          step={0.1}
           name='threshold'
           value={inputData.threshold}
           className='form-input'
@@ -39,6 +41,7 @@ export default function FormInputs({
         <label htmlFor='minStep'>MinStep:</label>
         <input
           type='number'
+          step={0.1}
           name='minStep'
           value={inputData.minStep}
           className='form-input'
@@ -50,6 +53,7 @@ export default function FormInputs({
         <label htmlFor='minStep'>MaxStep:</label>
         <input
           type='number'
+          step={0.1}
           name='maxStep'
           value={inputData.maxStep}
           className='form-input'
