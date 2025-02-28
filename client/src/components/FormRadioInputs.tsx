@@ -40,7 +40,7 @@ export default function FormRadioInputs({
         })),
     },
     {
-      label: '+5',
+      label: '-5',
       htmlFor: 'minusFive',
       value: -5,
       id: 'minusFive',
