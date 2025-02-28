@@ -5,68 +5,69 @@ export default function FormRadioInputs({
 }: {
   setInputData: (update: (prev: InputData) => InputData) => void;
 }) {
+  const inputs = [
+    {
+      label: '+5',
+      htmlFor: 'plusFive',
+      value: 5,
+      id: 'plusFive',
+      onClick: () =>
+        setInputData((prev: InputData) => ({
+          ...prev,
+          steps: 5,
+        })),
+    },
+    {
+      label: '+1',
+      htmlFor: 'plusOne',
+      value: 1,
+      id: 'plusOne',
+      onClick: () =>
+        setInputData((prev: InputData) => ({
+          ...prev,
+          steps: 1,
+        })),
+    },
+    {
+      label: '-1',
+      htmlFor: 'minusOne',
+      value: -1,
+      id: 'minusOne',
+      onClick: () =>
+        setInputData((prev: InputData) => ({
+          ...prev,
+          steps: -1,
+        })),
+    },
+    {
+      label: '+5',
+      htmlFor: 'minusFive',
+      value: -5,
+      id: 'minusFive',
+      onClick: () =>
+        setInputData((prev: InputData) => ({
+          ...prev,
+          steps: -5,
+        })),
+    },
+  ];
+
   return (
     <div className='field'>
-      <div>
-        <label htmlFor='plusFive'>+5</label>
-        <input
-          name='step'
-          value={5}
-          id='plusFive'
-          type='radio'
-          onClick={() =>
-            setInputData((prev: InputData) => ({
-              ...prev,
-              steps: 5,
-            }))
-          }
-        />
-      </div>
-      <div>
-        <label htmlFor='plusOne'>+1</label>
-        <input
-          name='step'
-          value={1}
-          id='plusOne'
-          type='radio'
-          onClick={() =>
-            setInputData((prev: InputData) => ({
-              ...prev,
-              steps: 1,
-            }))
-          }
-        />
-      </div>
-      <div>
-        <label htmlFor='minusOne'>-1</label>
-        <input
-          name='step'
-          value={-1}
-          id='minusOne'
-          type='radio'
-          onClick={() =>
-            setInputData((prev: InputData) => ({
-              ...prev,
-              steps: -1,
-            }))
-          }
-        />
-      </div>
-      <div>
-        <label htmlFor='minusFive'>-5</label>
-        <input
-          name='step'
-          value={-5}
-          id='minusFive'
-          type='radio'
-          onClick={() =>
-            setInputData((prev: InputData) => ({
-              ...prev,
-              steps: -5,
-            }))
-          }
-        />
-      </div>
+      {inputs.map((field, i) => {
+        return (
+          <div key={i}>
+            <label htmlFor={field.htmlFor}>{field.label}</label>
+            <input
+              value={field.value}
+              name='step'
+              id={field.id}
+              type='radio'
+              onClick={field.onClick}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }

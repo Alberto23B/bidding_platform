@@ -11,56 +11,46 @@ export default function FormInputs({
   handleChange,
   currentBid,
 }: InputProps) {
+  const inputs = [
+    { label: 'Base:', htmlFor: 'base', value: inputData.base, name: 'base' },
+    {
+      label: 'Treshold:',
+      htmlFor: 'threshold',
+      value: inputData.threshold,
+      name: 'threshold',
+    },
+    {
+      label: 'MinStep:',
+      htmlFor: 'minStep',
+      value: inputData.minStep,
+      name: 'minStep',
+    },
+    {
+      label: 'MaxStep:',
+      htmlFor: 'maxStep',
+      value: inputData.maxStep,
+      name: 'maxStep',
+    },
+  ];
+
   return (
     <>
-      <div className='field'>
-        <label htmlFor='input'>Base:</label>
-        <input
-          type='number'
-          step={0.1}
-          name='base'
-          value={inputData.base}
-          className='form-input'
-          onChange={(e) => handleChange(e)}
-          disabled={currentBid != 0}
-        />
-      </div>
-      <div className='field'>
-        <label htmlFor='threshold'>Threshold:</label>
-        <input
-          type='number'
-          step={0.1}
-          name='threshold'
-          value={inputData.threshold}
-          className='form-input'
-          onChange={(e) => handleChange(e)}
-          disabled={currentBid != 0}
-        />
-      </div>
-      <div className='field'>
-        <label htmlFor='minStep'>MinStep:</label>
-        <input
-          type='number'
-          step={0.1}
-          name='minStep'
-          value={inputData.minStep}
-          className='form-input'
-          onChange={(e) => handleChange(e)}
-          disabled={currentBid != 0}
-        />
-      </div>
-      <div className='field'>
-        <label htmlFor='minStep'>MaxStep:</label>
-        <input
-          type='number'
-          step={0.1}
-          name='maxStep'
-          value={inputData.maxStep}
-          className='form-input'
-          onChange={(e) => handleChange(e)}
-          disabled={currentBid != 0}
-        />
-      </div>
+      {inputs.map((field, i) => {
+        return (
+          <div className='field' key={i}>
+            <label htmlFor={field.htmlFor}>{field.label}</label>
+            <input
+              type='number'
+              step={0.1}
+              name={field.name}
+              value={field.value}
+              className='form-input'
+              onChange={(e) => handleChange(e)}
+              disabled={currentBid != 0}
+            />
+          </div>
+        );
+      })}
     </>
   );
 }
